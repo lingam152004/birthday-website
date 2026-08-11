@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0612;
+  --foreground: #f5f3f7;
+  --surface: rgba(255, 255, 255, 0.06);
+}
+
+.light {
+  --background: #faf7ff;
+  --foreground: #1a1523;
+  --surface: rgba(255, 255, 255, 0.55);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  position: relative;
+  background: var(--background);
+  color: var(--foreground);
+  overscroll-behavior: none;
+}
+
+::selection {
+  background: rgba(168, 85, 247, 0.35);
+  color: inherit;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: var(--surface);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.light .glass-card {
+  border: 1px solid rgba(20, 10, 40, 0.08);
+}
+
+/* Gold shimmer text */
+.text-shimmer {
+  background: linear-gradient(110deg, #f5c451 0%, #ffe9a8 25%, #f5c451 50%, #ffe9a8 75%, #f5c451 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+
+/* Hide native cursor when custom cursor is active (desktop only) */
+@media (pointer: fine) {
+  .custom-cursor-active {
+    cursor: none;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.4);
+  border-radius: 999px;
+}
+
+/* Utility: hide scrollbar visually but keep scrollable */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Focus visibility for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #f5c451;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
